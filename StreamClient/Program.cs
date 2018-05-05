@@ -17,6 +17,16 @@ namespace StreamClient
             Console.WriteLine("Wywoluje getStream()");
             System.IO.Stream stream2 = client2.getStream("image.jpg");
             ZapiszPlik(stream2, filePath);
+
+            Console.WriteLine("Wywoluje getMStream");
+            Stream fs = null;
+            long rozmiar;
+            string nnn = "image.jpg";
+            nnn = client2.getMStream(nnn, out rozmiar, out fs);
+            filePath = Path.Combine(System.Environment.CurrentDirectory, nnn);
+            ZapiszPlik(fs, filePath);
+            Console.WriteLine("Koniec getMStream");
+
             client2.Close();
             Console.WriteLine();
             Console.WriteLine("Nacisnij <ENTER> aby zakonczyc.");

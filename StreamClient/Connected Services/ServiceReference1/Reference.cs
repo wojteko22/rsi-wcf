@@ -20,6 +20,55 @@ namespace StreamClient.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStrumien/getStream", ReplyAction="http://tempuri.org/IStrumien/getStreamResponse")]
         System.Threading.Tasks.Task<System.IO.Stream> getStreamAsync(string nazwa);
+        
+        // CODEGEN: Generating message contract since the wrapper name (RequestFileMessage) of message RequestFileMessage does not match the default value (getMStream)
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStrumien/getMStream", ReplyAction="http://tempuri.org/IStrumien/getMStreamResponse")]
+        StreamClient.ServiceReference1.ResponseFileMessage getMStream(StreamClient.ServiceReference1.RequestFileMessage request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStrumien/getMStream", ReplyAction="http://tempuri.org/IStrumien/getMStreamResponse")]
+        System.Threading.Tasks.Task<StreamClient.ServiceReference1.ResponseFileMessage> getMStreamAsync(StreamClient.ServiceReference1.RequestFileMessage request);
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="RequestFileMessage", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class RequestFileMessage {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public string nazwa1;
+        
+        public RequestFileMessage() {
+        }
+        
+        public RequestFileMessage(string nazwa1) {
+            this.nazwa1 = nazwa1;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ResponseFileMessage", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class ResponseFileMessage {
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
+        public string nazwa2;
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
+        public long rozmiar;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public System.IO.Stream dane;
+        
+        public ResponseFileMessage() {
+        }
+        
+        public ResponseFileMessage(string nazwa2, long rozmiar, System.IO.Stream dane) {
+            this.nazwa2 = nazwa2;
+            this.rozmiar = rozmiar;
+            this.dane = dane;
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -55,6 +104,31 @@ namespace StreamClient.ServiceReference1 {
         
         public System.Threading.Tasks.Task<System.IO.Stream> getStreamAsync(string nazwa) {
             return base.Channel.getStreamAsync(nazwa);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        StreamClient.ServiceReference1.ResponseFileMessage StreamClient.ServiceReference1.IStrumien.getMStream(StreamClient.ServiceReference1.RequestFileMessage request) {
+            return base.Channel.getMStream(request);
+        }
+        
+        public string getMStream(string nazwa1, out long rozmiar, out System.IO.Stream dane) {
+            StreamClient.ServiceReference1.RequestFileMessage inValue = new StreamClient.ServiceReference1.RequestFileMessage();
+            inValue.nazwa1 = nazwa1;
+            StreamClient.ServiceReference1.ResponseFileMessage retVal = ((StreamClient.ServiceReference1.IStrumien)(this)).getMStream(inValue);
+            rozmiar = retVal.rozmiar;
+            dane = retVal.dane;
+            return retVal.nazwa2;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<StreamClient.ServiceReference1.ResponseFileMessage> StreamClient.ServiceReference1.IStrumien.getMStreamAsync(StreamClient.ServiceReference1.RequestFileMessage request) {
+            return base.Channel.getMStreamAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<StreamClient.ServiceReference1.ResponseFileMessage> getMStreamAsync(string nazwa1) {
+            StreamClient.ServiceReference1.RequestFileMessage inValue = new StreamClient.ServiceReference1.RequestFileMessage();
+            inValue.nazwa1 = nazwa1;
+            return ((StreamClient.ServiceReference1.IStrumien)(this)).getMStreamAsync(inValue);
         }
     }
 }
